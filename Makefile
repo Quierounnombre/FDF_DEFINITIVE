@@ -6,17 +6,16 @@
 #    By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 14:56:53 by vicgarci          #+#    #+#              #
-#    Updated: 2023/03/04 18:49:20 by vicgarci         ###   ########.fr        #
+#    Updated: 2023/03/06 19:33:56 by vicgarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 LIBFT = libft_def/libftprintf.a
-MLX42 = MLX42/libmlx42.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address -g3
-MLXFLAGS = -lglfw -L "glwf" -D DEBUG=1
+MLXFLAGS = -I /usr/local/include -L /usr/local/lib -l mlx -framework OpenGL -framework Appkit
 RM = rm -f
 
 BLACK = \033[0;30m
@@ -74,7 +73,7 @@ FILES = src/main.c \
 
 OBJS = ${FILES:.c=.o}
 
-all: mlx43 libft $(NAME)
+all: libft $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(LIBFT) $(MLX42) $(MLXFLAGS) $(OBJS) -o $(NAME)
@@ -83,7 +82,6 @@ $(NAME): $(OBJS)
 clean:
 	$(RM) $(OBJS)
 	$(MAKE) clean -C ./libft_def
-	$(MAKE)	clean -C ./MLX42
 
 fclean: clean
 	$(MAKE) fclean -C ./libft_def
@@ -91,10 +89,6 @@ fclean: clean
 
 
 re: fclean libft mlx43 $(NAME)
-
-#NOMBRE IGUAL A NOMBRE DE CARPETA CACA
-mlx43:
-	$(MAKE) -C ./MLX42
 
 libft:
 	$(MAKE) -C ./libft_def

@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:30:33 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/02 20:21:36 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:26:30 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define FDF_H
 
 # include "../libft_def/libftprintf.h"
-# include "../MLX42/include/MLX42/MLX42.h"
-# include "FdF_defines.h"
+# include <mlx.h>
+# include "FdF_ang_defines.h"
+# include "Key_defines.h"
 
 # ifndef WIDTH
 #  define WIDTH 1000
@@ -79,8 +80,8 @@ typedef struct s_cam
 
 typedef struct s_FdF_info
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
+	void		*mlx;
+	void		*img;
 	void		*win;
 	t_map		*map;
 	t_cam		*cam;
@@ -103,7 +104,7 @@ void			ft_hooks(t_FdF_info *fdf);
 
 /*----CLOSE----*/
 
-void			close_fdf(void *fdf);
+void			close_fdf(t_FdF_info *fdf);
 
 /*----DRAW----*/
 

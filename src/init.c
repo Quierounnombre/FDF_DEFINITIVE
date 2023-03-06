@@ -6,33 +6,26 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:05:24 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/03 17:44:51 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:19:55 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-static void	set_mlx(void)
-{
-	mlx_set_setting(MLX_STRETCH_IMAGE, false);
-	mlx_set_setting(MLX_FULLSCREEN, false);
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx_set_setting(MLX_DECORATED, true);
-	mlx_set_setting(MLX_HEADLESS, false);
-}
-
 static t_bool	ft_mlx_start(t_FdF_info **fdf)
 {
-	set_mlx();
 	(*fdf)->mlx = mlx_init(WIDTH, HEIGHT, NAME, false);
 	if ((*fdf)->mlx)
 	{
 		(*fdf)->img = mlx_new_image((*fdf)->mlx, WIDTH, HEIGHT);
 		if ((*fdf)->img)
 		{
-			if (!(mlx_image_to_window((*fdf)->mlx, (*fdf)->img, 0, 0) > 0))
+			if (!(mlx_put_image_to_window((*fdf)->mlx, (*fdf)->win,
+						(*fdf)->img, 0, 0) > 0))
 				return (true);
+			free ((*fdf)->img);
 		}
+		free((*fdf)->mlx);
 	}
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:39:05 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/02/28 16:12:40 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:26:02 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	free_struct(t_FdF_info *fdf)
 	free(fdf->cam->perps);
 	free(fdf->cam);
 	if (!fdf->mlx)
-		mlx_terminate(fdf->mlx);
+	{
+		if (fdf->img)
+			mlx_destroy_image(fdf->mlx, fdf->img);
+		if (fdf->win)
+			mlx_destroy_window(fdf->mlx, fdf->win);
+		free(fdf->mlx);
+	}
 	free(fdf);
 }

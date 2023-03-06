@@ -36,7 +36,7 @@ static void	draw_line(t_FdF_info *fdf, t_vector3D v3, t_vector2D v_init,
 	{
 		if (v_init.x >= 0 && v_init.x < WIDTH && v_init.y >= 0 && v_init.y
 			< HEIGHT)
-			mlx_put_pixel(fdf->img, v_init.x, v_init.y, color);
+			mlx_pixel_put(fdf->mlx, fdf->win, v_init.x, v_init.y, color);
 		v_init.x += v_offset.x;
 		v_init.y += v_offset.y;
 		n_dots--;

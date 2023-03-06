@@ -6,16 +6,13 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:39:52 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/02/07 17:41:03 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:25:36 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-void	close_fdf(void *param)
+void	close_fdf(t_FdF_info *fdf)
 {
-	t_FdF_info	*fdf;
-
-	fdf = param;
-	mlx_close_window(fdf->mlx);
+	mlx_destroy_window(fdf->mlx, fdf->win);
 }
