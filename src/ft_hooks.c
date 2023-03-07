@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:20:39 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/06 19:24:41 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:35:30 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	key_hook(int key, t_FdF_info *fdf)
 {
+	ft_printf("Valor de la key %d\n", key);
 	if (key == KEY_A)
 		a_hook(fdf);
 	if (key == KEY_D)

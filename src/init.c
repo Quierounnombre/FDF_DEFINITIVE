@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:05:24 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/06 19:19:55 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:27:17 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,21 @@
 
 static t_bool	ft_mlx_start(t_FdF_info **fdf)
 {
-	(*fdf)->mlx = mlx_init(WIDTH, HEIGHT, NAME, false);
+	(*fdf)->mlx = mlx_init();
 	if ((*fdf)->mlx)
 	{
 		(*fdf)->img = mlx_new_image((*fdf)->mlx, WIDTH, HEIGHT);
 		if ((*fdf)->img)
 		{
-			if (!(mlx_put_image_to_window((*fdf)->mlx, (*fdf)->win,
-						(*fdf)->img, 0, 0) > 0))
-				return (true);
-			free ((*fdf)->img);
+			(*fdf)->win = mlx_new_window((*fdf)->mlx, WIDTH, HEIGHT, "FDF");
+			if ((*fdf)->win)
+			{
+				if ((mlx_put_image_to_window((*fdf)->mlx, (*fdf)->win,
+							(*fdf)->img, 0, 0) > 0))
+					return (true);
+				mlx_destroy_window((*fdf)->mlx, (*fdf)->win);
+			}
+			mlx_destroy_image((*fdf)->mlx, (*fdf)->img);
 		}
 		free((*fdf)->mlx);
 	}
