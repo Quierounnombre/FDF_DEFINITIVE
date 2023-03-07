@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:48:20 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/03 17:14:57 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:16:30 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ static void	zoom_in(t_FdF_info *fdf)
 	draw(fdf);
 }
 
-void	scroll_hook(double xdelta, double ydelta, void *param)
+int	scroll_hook(int button, int xdelta, int ydelta, t_FdF_info *param)
 {
 	t_FdF_info	*fdf;
 
 	fdf = param;
-	if (ydelta > 0)
+	if (xdelta && button == 4)
 		zoom_in(fdf);
-	else if (ydelta < 0)
+	else if (ydelta)
 		zoom_out(fdf);
-	if (xdelta)
-		ft_printf("sry, pero no soporto este tipo de movimiento :,(\n");
 	ft_printf("Zoom actual (x, y)[%d, %d]\n", (int)fdf->cam->dim.x,
 		(int)fdf->cam->dim.y);
+	return (button);
 }

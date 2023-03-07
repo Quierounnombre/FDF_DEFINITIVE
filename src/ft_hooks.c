@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:20:39 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/07 15:52:47 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:16:56 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static int	key_hook(int key, t_FdF_info *fdf)
 
 void	ft_hooks(t_FdF_info *fdf)
 {
-	mlx_key_hook(fdf->win, key_hook, fdf);
-	//mlx_scroll_hook(fdf->mlx, scroll_hook, fdf);
+	mlx_hook(fdf->win, 2, 0, key_hook, fdf);
 	mlx_hook(fdf->win, 17, 0, close_fdf, fdf);
+	mlx_hook(fdf->win, 4, 0, scroll_hook, fdf);
+	mlx_hook(fdf->win, 5, 0, scroll_hook, fdf);
 }

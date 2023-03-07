@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:30:33 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/07 14:17:12 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:09:59 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ void			k_hook(t_FdF_info *fdf);
 void			left_hook(t_FdF_info *fdf);
 void			right_hook(t_FdF_info *fdf);
 void			space_hook(t_FdF_info *fdf);
-void			scroll_hook(double xdelta, double ydelta, void *param);
+int				scroll_hook(int button, int xdelta,
+					int ydelta, t_FdF_info *param);
 
 #endif
