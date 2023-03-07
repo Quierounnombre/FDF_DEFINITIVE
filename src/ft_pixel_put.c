@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_fdf.c                                        :+:      :+:    :+:   */
+/*   ft_pixel_put.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 16:39:52 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/07 14:19:25 by vicgarci         ###   ########.fr       */
+/*   Created: 2023/03/07 11:52:41 by vicgarci          #+#    #+#             */
+/*   Updated: 2023/03/07 14:58:34 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-int	close_fdf(t_FdF_info *fdf)
+void	ft_pixel_put(t_img	*img, int x, int y, int color)
 {
-	exit((int)&fdf);
-	return (0);
+	char	*dst;
+
+	dst = img->adres + (y * img->line + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

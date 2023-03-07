@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:30:33 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/06 19:26:30 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:17:12 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,19 @@ typedef struct s_cam
 	t_perspective	*perps;
 }				t_cam;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*adres;
+	int		bits_per_pixel;
+	int		line;
+	int		endian;
+}				t_img;
+
 typedef struct s_FdF_info
 {
 	void		*mlx;
-	void		*img;
+	t_img		*img;
 	void		*win;
 	t_map		*map;
 	t_cam		*cam;
@@ -104,7 +113,7 @@ void			ft_hooks(t_FdF_info *fdf);
 
 /*----CLOSE----*/
 
-void			close_fdf(t_FdF_info *fdf);
+int				close_fdf(t_FdF_info *fdf);
 
 /*----DRAW----*/
 
@@ -112,6 +121,7 @@ void			draw(t_FdF_info	*fdf);
 void			draw_lines(t_FdF_info *fdf, int i, int j, t_vector2D v);
 t_vector2D		get_iso_perspective(t_vector3D v3, t_FdF_info *fdf);
 void			set_dark(t_FdF_info *fdf);
+void			ft_pixel_put(t_img	*img, int x, int y, int color);
 
 /*-----CAM-----*/
 

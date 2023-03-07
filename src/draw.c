@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:49:10 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/07 11:32:53 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:02:45 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_vector2D	draw_dot(t_FdF_info *fdf, int i, int j)
 	v3 = load_vector3d(i, j, map->map[j][i].pixel);
 	v = get_iso_perspective(v3, fdf);
 	if (v.x >= 0 && v.x < WIDTH && v.y >= 0 && v.y < HEIGHT)
-		mlx_pixel_put(fdf->mlx, fdf->win, v.x, v.y, map->map[j][i].color);
+		ft_pixel_put(fdf->img, v.x, v.y, map->map[j][i].color);
 	return (v);
 }
 
@@ -53,5 +53,6 @@ void	draw(t_FdF_info *fdf)
 {
 	set_dark(fdf);
 	draw_dots(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 	ft_printf("\n--------TERMINE DE DIBUJAR--------\n\n");
 }

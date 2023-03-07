@@ -6,7 +6,7 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 18:14:49 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/07 11:31:47 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:29:46 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	store_pixel(int *i, int line, t_map *map, char **s)
 			(*s)++;
 	}
 	else
-		map->map[line][*i].color = 0x000000FF;
+		map->map[line][*i].color = 0x0000FF;
 	(*i)++;
 }
 

@@ -6,29 +6,49 @@
 /*   By: vicgarci <vicgarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:05:24 by vicgarci          #+#    #+#             */
-/*   Updated: 2023/03/07 11:27:17 by vicgarci         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:59:50 by vicgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
+
+static t_bool	init_img(t_FdF_info *fdf)
+{
+	t_img	*img;
+
+	img = (t_img *)malloc(sizeof(t_img));
+	if (img)
+	{
+		fdf->img = img;
+		fdf->img->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+		if (fdf->img->img)
+		{
+			img->adres = mlx_get_data_addr(fdf->img->img,
+					&fdf->img->bits_per_pixel, &fdf->img->line,
+					&fdf->img->endian);
+			return (true);
+		}
+		free(img);
+	}
+	return (false);
+}
 
 static t_bool	ft_mlx_start(t_FdF_info **fdf)
 {
 	(*fdf)->mlx = mlx_init();
 	if ((*fdf)->mlx)
 	{
-		(*fdf)->img = mlx_new_image((*fdf)->mlx, WIDTH, HEIGHT);
-		if ((*fdf)->img)
+		if (init_img((*fdf)))
 		{
 			(*fdf)->win = mlx_new_window((*fdf)->mlx, WIDTH, HEIGHT, "FDF");
 			if ((*fdf)->win)
 			{
 				if ((mlx_put_image_to_window((*fdf)->mlx, (*fdf)->win,
-							(*fdf)->img, 0, 0) > 0))
+							(*fdf)->img->img, 0, 0) > 0))
 					return (true);
 				mlx_destroy_window((*fdf)->mlx, (*fdf)->win);
 			}
-			mlx_destroy_image((*fdf)->mlx, (*fdf)->img);
+			free((*fdf)->img);
 		}
 		free((*fdf)->mlx);
 	}
